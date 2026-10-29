@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="OmniPrep English - Nền tảng học tiếng Anh và thi thử TOEIC, IELTS 4 kỹ năng Nghe, Đọc, Nói, Viết với kho đề thi thật cập nhật liên tục và công cụ tự thu thập đề.">
+  <title>OmniPrep English - Học & Thi Thử TOEIC & IELTS 4 Kỹ Năng (Kho Đề Thực Chiến)</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
+  
+  <!-- CSS Stylesheet (Bright & Eye-friendly) -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app-container">
+    
+    <!-- ==========================================
+         TOP HEADER & NAVIGATION
+         ========================================== -->
+    <header class="site-header" id="mainHeader">
+      <div class="brand-wrapper" id="brandLogoBtn" title="Về trang chủ">
+        <div class="brand-icon">
+          <span>🎓</span>
+        </div>
+        <div class="brand-text">
+          <h1>OmniPrep English</h1>
+          <span class="brand-tagline">Kho Đề TOEIC 2024 & IELTS 19 • 4 Kỹ Năng</span>
+        </div>
+      </div>
+
+      <!-- Navigation Menu -->
+      <nav aria-label="Main Navigation">
+        <ul class="nav-menu" id="navMenuList">
+          <li class="nav-item active" data-tab="tab-dashboard" id="navDashboard">
+            <span>🏠</span> Trang chủ
+          </li>
+          <li class="nav-item" data-tab="tab-toeic" id="navToeic">
+            <span>📘</span> Thi thử TOEIC
+          </li>
+          <li class="nav-item" data-tab="tab-ielts" id="navIelts">
+            <span>🎓</span> Thi thử IELTS
+          </li>
+          <li class="nav-item" data-tab="tab-importer" id="navImporter">
+            <span>📥</span> Thu thập & Nhập đề <span class="nav-badge">Auto Sync</span>
+          </li>
+          <li class="nav-item" data-tab="tab-vocabulary" id="navVocab">
+            <span>🗂️</span> Flashcards
+          </li>
+          <li class="nav-item" data-tab="tab-history" id="navHistory">
+            <span>📊</span> Lịch sử
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Action Buttons & Theme Toggle -->
+      <div class="header-actions">
+        <button class="btn btn-primary" id="quickAutoCollectBtn" title="Tự động thu thập thêm đề mới từ kho trực tuyến">
+          <span>⚡</span> Thu thập đề mới
+        </button>
+        <button class="theme-toggle-btn" id="themeToggleBtn" title="Chuyển đổi Chế độ Sáng / Tối" aria-label="Toggle Theme">
+          <span id="themeIcon">🌙</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- ==========================================
+         MAIN CONTENT CONTAINER
+         ========================================== -->
+    <main class="main-content" id="mainContentWrapper">
+
+      <!-- ====================================================
+           TAB 1: DASHBOARD
+           ==================================================== -->
+      <section class="tab-pane active" id="tab-dashboard">
+        <!-- Hero Section (Clean & Bright) -->
+        <div class="hero-card">
+          <div class="hero-content">
+            <div class="hero-tag">
+              <span>✨</span> Giao Diện Sáng Dễ Nhìn • Kho Đề Thực Chiến 2024
+            </div>
+            <h2 class="hero-title">
+              Luyện thi <span>TOEIC 900+</span> & <span>IELTS 8.0+</span> với kho đề thi thật cập nhật liên tục
+            </h2>
+            <p class="hero-desc">
+              Phân tách 4 kỹ năng Nghe - Đọc - Nói - Viết độc lập. Tự động thu thập các bộ đề thi mới nhất từ <strong>ETS TOEIC 2024</strong>, <strong>Cambridge IELTS 19</strong>, và đề dự đoán Quý mới nhất. Hỗ trợ import đề thi tự do từ Word, PDF, JSON và phòng thu âm giọng nói AI.
+            </p>
+            <div class="hero-actions">
+              <button class="btn btn-toeic" id="heroStartToeicBtn">
+                <span>📘</span> Kho Đề Thi TOEIC (ETS 2024)
+              </button>
+              <button class="btn btn-ielts" id="heroStartIeltsBtn">
+                <span>🎓</span> Kho Đề Thi IELTS (Cam 19)
+              </button>
+              <button class="btn btn-secondary" id="heroAutoCollectBtn">
+                <span>⚡</span> Tự động thu thập thêm đề
+              </button>
+            </div>
+          </div>
+          <div class="hero-image-wrapper">
+            <img src="assets/images/hero_bright.jpg" alt="EduMaster English Platform Bright Workspace" loading="lazy">
+          </div>
+        </div>
+
+        <!-- Quick Stats Grid -->
+        <div class="stats-grid">
+          <div class="stat-card glass-panel">
+            <div class="stat-icon blue">📘</div>
+            <div>
+              <div class="stat-value" id="statToeicCount">6+</div>
+              <div class="stat-label">Đề thi thật TOEIC (ETS 2024)</div>
+            </div>
+          </div>
+          <div class="stat-card glass-panel">
+            <div class="stat-icon purple">🎓</div>
+            <div>
+              <div class="stat-value" id="statIeltsCount">6+</div>
+              <div class="stat-label">Đề thi Cambridge IELTS 19</div>
+            </div>
+          </div>
+          <div class="stat-card glass-panel">
+            <div class="stat-icon cyan">⚡</div>
+            <div>
+              <div class="stat-value" id="statCustomCount">0</div>
+              <div class="stat-label">Đề đã tự động thu thập</div>
+            </div>
+          </div>
+          <div class="stat-card glass-panel">
+            <div class="stat-icon emerald">🗂️</div>
+            <div>
+              <div class="stat-value" id="statVocabCount">12+</div>
+              <div class="stat-label">Từ vựng học thuật trọng tâm</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Four Skills Quick Access Showcase -->
+        <div style="margin-bottom: 2rem;">
+          <h3 style="font-size: 1.55rem; margin-bottom: 0.5rem;">🌟 Luyện tập chuyên sâu 4 kỹ năng độc lập</h3>
+          <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Chọn kỹ năng bạn muốn nâng band điểm ngay hôm nay:</p>
+          
+          <div class="exam-grid">
+            <!-- Listening Card -->
+            <div class="exam-card">
+              <div class="exam-card-header">
+                <span class="skill-pill listening">🎧 Luyện Nghe (Listening)</span>
+                <span class="source-badge">ETS & Cambridge 19</span>
+              </div>
+              <h4 class="exam-title">Phòng Luyện Nghe Đa Tốc Độ</h4>
+              <p class="exam-desc">Mô phỏng Part 1-4 TOEIC và 4 Section IELTS. Tùy chỉnh tốc độ phát 0.8x - 1.5x, bật tắt transcript và lời giải thích chi tiết.</p>
+              <div class="exam-card-actions">
+                <button class="btn btn-secondary quick-skill-btn" data-target="listening" data-cat="toeic">Nghe TOEIC</button>
+                <button class="btn btn-primary quick-skill-btn" data-target="listening" data-cat="ielts">Nghe IELTS</button>
+              </div>
+            </div>
+
+            <!-- Reading Card -->
+            <div class="exam-card">
+              <div class="exam-card-header">
+                <span class="skill-pill reading">📖 Luyện Đọc (Reading)</span>
+                <span class="source-badge">Đọc hiểu & Bút màu</span>
+              </div>
+              <h4 class="exam-title">Đọc Hiểu & Bút Highlight Thông Minh</h4>
+              <p class="exam-desc">Màn hình chia đôi rõ ràng: Bài đọc bên trái với công cụ bôi màu văn bản (Vàng, Xanh lá, Xanh biển), câu hỏi và đáp án bên phải.</p>
+              <div class="exam-card-actions">
+                <button class="btn btn-secondary quick-skill-btn" data-target="reading" data-cat="toeic">Đọc TOEIC</button>
+                <button class="btn btn-primary quick-skill-btn" data-target="reading" data-cat="ielts">Đọc IELTS</button>
+              </div>
+            </div>
+
+            <!-- Speaking Card -->
+            <div class="exam-card">
+              <div class="exam-card-header">
+                <span class="skill-pill speaking">🗣️ Luyện Nói (Speaking)</span>
+                <span class="source-badge">Phòng thu ảo & AI</span>
+              </div>
+              <h4 class="exam-title">Ghi Âm Giọng Nói & Giám Khảo Ảo</h4>
+              <p class="exam-desc">Ghi âm trực tiếp qua Micro máy tính, biểu đồ sóng âm thời gian thực và nhận diện giọng nói sang văn bản kèm câu trả lời mẫu Band 8.5+.</p>
+              <div class="exam-card-actions">
+                <button class="btn btn-secondary quick-skill-btn" data-target="speaking" data-cat="toeic">Nói TOEIC</button>
+                <button class="btn btn-primary quick-skill-btn" data-target="speaking" data-cat="ielts">Nói IELTS</button>
+              </div>
+            </div>
+
+            <!-- Writing Card -->
+            <div class="exam-card">
+              <div class="exam-card-header">
+                <span class="skill-pill writing">✍️ Luyện Viết (Writing)</span>
+                <span class="source-badge">Đếm từ & Bài mẫu 8.5</span>
+              </div>
+              <h4 class="exam-title">Phòng Viết & Đếm Từ Trực Tiếp</h4>
+              <p class="exam-desc">Bộ đếm từ tự động, bảng kiểm tiêu chí chấm điểm IELTS Task 1 (150+ từ), Task 2 (250+ từ) và bài viết mẫu điểm tuyệt đối.</p>
+              <div class="exam-card-actions">
+                <button class="btn btn-secondary quick-skill-btn" data-target="writing" data-cat="toeic">Viết TOEIC</button>
+                <button class="btn btn-primary quick-skill-btn" data-target="writing" data-cat="ielts">Viết IELTS</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================
+           TAB 2: TOEIC EXAMS SECTION
+           ==================================================== -->
+      <section class="tab-pane" id="tab-toeic">
+        <div style="margin-bottom: 1.5rem;">
+          <h2 style="font-size: 2.1rem; margin-bottom: 0.5rem;">📘 Trung Tâm Thi Thử TOEIC (ETS Format)</h2>
+          <p style="color: var(--text-secondary);">Bộ đề thi thật ETS 2024 & 2023 mới nhất, phân loại riêng từng kỹ năng Nghe, Đọc, Nói, Viết.</p>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="search-filter-bar">
+          <div class="search-input-wrapper">
+            <span class="search-icon-pos">🔍</span>
+            <input type="text" class="search-input" id="toeicSearchInput" placeholder="Tìm kiếm đề thi TOEIC (ví dụ: ETS 2024, Part 5, Listening)...">
+          </div>
+        </div>
+
+        <!-- Filter Sub-nav for TOEIC Skills -->
+        <div class="skill-tabs-nav" id="toeicSkillTabs">
+          <button class="skill-tab-btn active" data-skill="all">Tất cả kỹ năng</button>
+          <button class="skill-tab-btn" data-skill="listening">🎧 Nghe (Listening)</button>
+          <button class="skill-tab-btn" data-skill="reading">📖 Đọc (Reading)</button>
+          <button class="skill-tab-btn" data-skill="speaking">🗣️ Nói (Speaking)</button>
+          <button class="skill-tab-btn" data-skill="writing">✍️ Viết (Writing)</button>
+        </div>
+
+        <!-- TOEIC Exam Cards Grid -->
+        <div class="exam-grid" id="toeicExamsContainer">
+          <!-- Rendered dynamically by JS -->
+        </div>
+      </section>
+
+      <!-- ====================================================
+           TAB 3: IELTS EXAMS SECTION
+           ==================================================== -->
+      <section class="tab-pane" id="tab-ielts">
+        <div style="margin-bottom: 1.5rem;">
+          <h2 style="font-size: 2.1rem; margin-bottom: 0.5rem;">🎓 Trung Tâm Thi Thử IELTS Academic (Cambridge 19)</h2>
+          <p style="color: var(--text-secondary);">Mô phỏng kỳ thi IELTS chuẩn quốc tế theo thang điểm Band 1.0 - 9.0 từ bộ đề Cambridge 19 mới nhất.</p>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="search-filter-bar">
+          <div class="search-input-wrapper">
+            <span class="search-icon-pos">🔍</span>
+            <input type="text" class="search-input" id="ieltsSearchInput" placeholder="Tìm kiếm đề thi IELTS (ví dụ: Cambridge 19, Task 2, Speaking)...">
+          </div>
+        </div>
+
+        <!-- Filter Sub-nav for IELTS Skills -->
+        <div class="skill-tabs-nav" id="ieltsSkillTabs">
+          <button class="skill-tab-btn active" data-skill="all">Tất cả kỹ năng</button>
+          <button class="skill-tab-btn" data-skill="listening">🎧 Listening (Nghe)</button>
+          <button class="skill-tab-btn" data-skill="reading">📖 Reading (Đọc)</button>
+          <button class="skill-tab-btn" data-skill="writing">✍️ Writing (Task 1 & 2)</button>
+          <button class="skill-tab-btn" data-skill="speaking">🗣️ Speaking (Phỏng vấn)</button>
+        </div>
+
+        <!-- IELTS Exam Cards Grid -->
+        <div class="exam-grid" id="ieltsExamsContainer">
+          <!-- Rendered dynamically by JS -->
+        </div>
+      </section>
+
+      <!-- ====================================================
+           TAB 4: EXAM IMPORTER & AUTO-COLLECTOR HUB
+           ==================================================== -->
+      <section class="tab-pane" id="tab-importer">
+        <!-- Cloud Auto-Sync Banner -->
+        <div class="cloud-sync-banner">
+          <div class="cloud-sync-info">
+            <h4>⚡ Tự Động Thu Thập Đề Thi Mới Từ Kho Trực Tuyến</h4>
+            <p>Hệ thống tự động đồng bộ các bộ đề thi thật mới nhất hiện nay (ETS 2024, Cambridge IELTS 19, Đề dự đoán) chỉ với 1 cú click.</p>
+          </div>
+          <button class="btn btn-primary" id="autoSyncArchiveBtn" style="padding: 0.75rem 1.5rem; font-size: 1rem;">
+            <span>🚀</span> Thu thập toàn bộ đề mới ngay
+          </button>
+        </div>
+
+        <div style="margin-bottom: 2rem;">
+          <h2 style="font-size: 2.1rem; margin-bottom: 0.5rem;">📥 Trung Tâm Nhập & Quản Lý Đề Thi</h2>
+          <p style="color: var(--text-secondary);">Thêm đề thi tiếng Anh của riêng bạn bằng cách dán văn bản Word/PDF, tải file JSON hoặc đồng bộ từ kho trực tuyến.</p>
+        </div>
+
+        <div class="importer-wrapper">
+          <!-- Importer Subtabs -->
+          <div class="importer-subtabs">
+            <button class="importer-subtab-btn active" data-subtab="subtab-text-parser">📝 Nhập nhanh qua văn bản</button>
+            <button class="importer-subtab-btn" data-subtab="subtab-json-upload">📁 Tải file JSON</button>
+            <button class="importer-subtab-btn" data-subtab="subtab-custom-list">🗃️ Đề thi trong thư viện (<span id="customExamsCount">0</span>)</button>
+          </div>
+
+          <!-- Subtab 1: Smart Text Parser -->
+          <div class="importer-subcontent active" id="subtab-text-parser">
+            <div class="glass-panel" style="padding: 2.25rem;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.75rem;">
+                <div>
+                  <h4 style="font-size: 1.2rem; font-weight: 700;">Dán nội dung đề thi vào khung bên dưới</h4>
+                  <p style="font-size: 0.88rem; color: var(--text-secondary);">Hệ thống tự động nhận diện câu hỏi, các lựa chọn A, B, C, D, đáp án đúng và lời giải thích.</p>
+                </div>
+                <div style="display: flex; gap: 0.5rem;">
+                  <button class="btn btn-secondary" id="loadSampleTextBtn">
+                    <span>💡</span> Dán văn bản mẫu
+                  </button>
+                  <button class="btn btn-secondary" id="clearTextBtn">
+                    <span>🗑️</span> Xóa trắng
+                  </button>
+                </div>
+              </div>
+
+              <textarea class="import-textarea" id="textImportInput" placeholder="[Title: Đề thi thử TOEIC Reading 2024]&#10;[Category: TOEIC]&#10;[Skill: Reading]&#10;[Time: 45]&#10;&#10;Question 1: The manager decided to ______ the meeting.&#10;A. postpone&#10;B. postpones&#10;C. postponed&#10;D. postponing&#10;Answer: A&#10;Explanation: Sau 'decided to' là động từ nguyên mẫu."></textarea>
+
+              <div style="margin-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                <div style="font-size: 0.88rem; color: var(--text-muted);">
+                  Cú pháp hỗ trợ: <code>Question 1: ...</code>, <code>A. ...</code>, <code>B. ...</code>, <code>Answer: A</code>, <code>Explanation: ...</code>
+                </div>
+                <button class="btn btn-primary" id="parseAndSaveTextBtn">
+                  <span>🚀</span> Phân tích cú pháp & Nhập đề thi
+                </button>
+              </div>
+
+              <!-- Live Parse Preview Box -->
+              <div id="parsePreviewBox" style="display: none; margin-top: 1.5rem; padding: 1.25rem; background: var(--bg-tertiary); border-radius: var(--radius-md); border: 1px solid var(--border-subtle);">
+                <h5 style="color: var(--accent-blue); margin-bottom: 0.5rem;">Kết quả phân tích preview:</h5>
+                <div id="parsePreviewDetails" style="font-size: 0.92rem; color: var(--text-secondary);"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Subtab 2: JSON File Upload -->
+          <div class="importer-subcontent" id="subtab-json-upload" style="display: none;">
+            <div class="glass-panel" style="padding: 2.5rem; text-align: center;">
+              <div class="dropzone-card" id="jsonDropzone">
+                <div class="dropzone-icon">📄</div>
+                <h4 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 0.5rem;">Kéo thả file .JSON đề thi vào đây</h4>
+                <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Hoặc nhấn vào đây để chọn file từ máy tính của bạn</p>
+                <input type="file" id="jsonFileInput" accept=".json" style="display: none;">
+                <button class="btn btn-primary" id="browseJsonBtn">
+                  <span>📂</span> Chọn file JSON
+                </button>
+              </div>
+
+              <div style="margin-top: 2rem; display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+                <button class="btn btn-secondary" id="downloadJsonTemplateBtn">
+                  <span>📥</span> Tải file mẫu JSON đề thi
+                </button>
+                <button class="btn btn-secondary" id="exportAllExamsBtn">
+                  <span>📤</span> Sao lưu / Xuất tất cả đề ra JSON
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Subtab 3: Custom Exams Library -->
+          <div class="importer-subcontent" id="subtab-custom-list" style="display: none;">
+            <div class="glass-panel" style="padding: 2rem;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+                <h4 style="font-size: 1.25rem; font-weight: 700;">Danh sách các đề đã thu thập & tự nhập</h4>
+                <button class="btn btn-danger" id="clearAllCustomExamsBtn">
+                  <span>🗑️</span> Xóa tất cả đề đã nhập
+                </button>
+              </div>
+              <div class="exam-grid" id="customExamsGrid">
+                <!-- Injected via JS -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================
+           TAB 5: FLASHCARD VOCABULARY HUB
+           ==================================================== -->
+      <section class="tab-pane" id="tab-vocabulary">
+        <div style="margin-bottom: 2rem; text-align: center;">
+          <h2 style="font-size: 2.1rem; margin-bottom: 0.5rem;">🗂️ Sổ Tay Từ Vựng Trọng Tâm</h2>
+          <p style="color: var(--text-secondary);">Ôn tập từ vựng TOEIC & IELTS xuất hiện nhiều nhất với phát âm chuẩn bản xứ và thẻ 3D.</p>
+        </div>
+
+        <!-- Vocab Filter -->
+        <div style="display: flex; justify-content: center; gap: 0.75rem; margin-bottom: 1.5rem;">
+          <button class="skill-tab-btn active vocab-filter-btn" data-cat="ALL">Tất cả từ</button>
+          <button class="skill-tab-btn vocab-filter-btn" data-cat="TOEIC">TOEIC Essential</button>
+          <button class="skill-tab-btn vocab-filter-btn" data-cat="IELTS">IELTS Academic</button>
+        </div>
+
+        <!-- Flashcard 3D Widget -->
+        <div class="flashcard-container">
+          <div class="flashcard-3d-wrapper" id="flashcardElement" title="Nhấn vào thẻ để lật mặt sau">
+            <div class="flashcard-inner" id="flashcardInner">
+              <!-- Front Side -->
+              <div class="flashcard-front">
+                <span class="skill-pill" id="vocabTagPill" style="margin-bottom: 1rem; background: #e0f2fe; color: #0369a1;">TOEIC</span>
+                <div class="flashcard-word" id="vocabWord">implement</div>
+                <div class="flashcard-ipa" id="vocabIpa">/ˈɪm.plɪ.ment/</div>
+                <div style="font-size: 1rem; color: var(--text-secondary);" id="vocabPos">(verb)</div>
+                <div style="margin-top: 1.5rem; font-size: 0.85rem; color: var(--text-muted);">
+                  💡 Nhấn chuột vào thẻ để xem nghĩa tiếng Việt và ví dụ
+                </div>
+              </div>
+              <!-- Back Side -->
+              <div class="flashcard-back">
+                <h4 style="color: var(--accent-blue); font-size: 1.4rem; margin-bottom: 0.75rem;" id="vocabMeaning">Thực thi, áp dụng</h4>
+                <div style="padding: 1rem; background: #ffffff; border-radius: var(--radius-md); border: 1px solid var(--border-subtle); margin-bottom: 1rem;">
+                  <p style="font-style: italic; font-size: 1rem; color: var(--text-primary);" id="vocabExample">"The company decided to implement flexible working hours."</p>
+                </div>
+                <div style="font-size: 0.85rem; color: var(--text-muted);" id="vocabTopic">Chủ đề: Workplace & Management</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Flashcard Controls -->
+          <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; justify-content: center;">
+            <button class="btn btn-secondary" id="vocabPrevBtn" title="Từ trước">
+              <span>⬅️</span> Trước
+            </button>
+            <button class="btn btn-primary" id="vocabPronounceBtn" title="Phát âm từ này">
+              <span>🔊</span> Phát âm
+            </button>
+            <button class="btn btn-secondary" id="vocabFlipBtn" title="Lật thẻ">
+              <span>🔄</span> Lật thẻ
+            </button>
+            <button class="btn btn-secondary" id="vocabNextBtn" title="Từ tiếp theo">
+              Tiếp <span>➡️</span>
+            </button>
+            <button class="icon-btn" id="vocabShuffleBtn" title="Xáo trộn ngẫu nhiên">
+              <span>🔀</span>
+            </button>
+          </div>
+
+          <div style="font-size: 0.88rem; color: var(--text-muted);">
+            Từ số <span id="vocabCurrentIndex">1</span> trên tổng số <span id="vocabTotalCount">12</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================
+           TAB 6: TEST HISTORY & ANALYTICS
+           ==================================================== -->
+      <section class="tab-pane" id="tab-history">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
+          <div>
+            <h2 style="font-size: 2.1rem; margin-bottom: 0.5rem;">📊 Lịch Sử Thi & Thống Kê Điểm Số</h2>
+            <p style="color: var(--text-secondary);">Xem lại các bài thi thử bạn đã hoàn thành và theo dõi tiến độ điểm số.</p>
+          </div>
+          <button class="btn btn-danger" id="clearHistoryBtn">
+            <span>🗑️</span> Xóa lịch sử thi
+          </button>
+        </div>
+
+        <div class="glass-panel" style="padding: 2rem; overflow-x: auto;">
+          <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.95rem;">
+            <thead>
+              <tr style="border-bottom: 2px solid var(--border-subtle); color: var(--text-secondary);">
+                <th style="padding: 1rem 0.5rem;">Thời gian</th>
+                <th style="padding: 1rem 0.5rem;">Tên bài thi</th>
+                <th style="padding: 1rem 0.5rem;">Kỳ thi</th>
+                <th style="padding: 1rem 0.5rem;">Kỹ năng</th>
+                <th style="padding: 1rem 0.5rem;">Điểm đạt được</th>
+                <th style="padding: 1rem 0.5rem;">Độ chính xác</th>
+                <th style="padding: 1rem 0.5rem;">Thời gian làm</th>
+              </tr>
+            </thead>
+            <tbody id="historyTableBody">
+              <!-- Rendered via JS -->
+            </tbody>
+          </table>
+          <div id="noHistoryMsg" style="text-align: center; padding: 3rem 1rem; color: var(--text-muted); display: none;">
+            Bạn chưa làm bài thi thử nào. Hãy chọn một bài thi TOEIC hoặc IELTS để bắt đầu!
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================
+           ACTIVE EXAM WORKSPACE
+           ==================================================== -->
+      <section class="exam-workspace" id="examActiveWorkspace">
+        
+        <!-- Sticky Exam Controls Header -->
+        <div class="exam-header-bar">
+          <div class="exam-header-info">
+            <button class="btn btn-secondary" id="exitExamBtn" title="Thoát bài thi">
+              <span>✕</span> Thoát
+            </button>
+            <div>
+              <h3 id="workspaceExamTitle" style="font-size: 1.2rem; font-weight: 700;">ETS TOEIC 2024 Actual Test</h3>
+              <div style="display: flex; align-items: center; gap: 0.6rem; margin-top: 0.25rem;">
+                <span class="exam-mode-badge exam" id="workspaceModeBadge">Thi thử tính giờ</span>
+                <span style="font-size: 0.85rem; color: var(--text-muted);" id="workspaceQuestionCounter">Câu 1/15</span>
+              </div>
+            </div>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 1rem;">
+            <div class="timer-box" id="workspaceTimerBox">
+              <span>⏱️</span> <span id="workspaceTimerText">45:00</span>
+            </div>
+            <button class="btn btn-primary" id="workspaceSubmitExamBtn">
+              <span>🏁</span> Nộp bài thi
+            </button>
+          </div>
+        </div>
+
+        <!-- 1. STANDARD SPLIT VIEW (LISTENING & READING) -->
+        <div class="exam-split-layout" id="splitExamLayout">
+          
+          <!-- Left Column: Passage or Audio Player -->
+          <div class="passage-panel glass-panel" id="passageContainer">
+            
+            <!-- Audio Player Bar (for Listening questions) -->
+            <div class="audio-player-card" id="audioPlayerWidget" style="display: none; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: var(--radius-md); padding: 1.25rem; margin-bottom: 1.5rem;">
+              <div class="audio-controls-row">
+                <button class="audio-play-btn" id="audioPlayBtn" title="Nghe âm thanh câu hỏi">
+                  <span>▶</span>
+                </button>
+                <div style="flex: 1;">
+                  <div style="font-size: 0.9rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.25rem;" id="audioTrackTitle">
+                    🎧 Bản ghi âm bài thi (ETS Audio Track)
+                  </div>
+                  <div style="font-size: 0.82rem; color: var(--text-muted);" id="audioStatusText">
+                    Nhấn nút Play để nghe giọng bản xứ
+                  </div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                  <label for="audioSpeedSelect" style="font-size: 0.85rem; color: var(--text-secondary);">Tốc độ:</label>
+                  <select class="audio-speed-select" id="audioSpeedSelect">
+                    <option value="0.8">0.8x</option>
+                    <option value="1.0" selected>1.0x (Chuẩn)</option>
+                    <option value="1.2">1.2x</option>
+                    <option value="1.5">1.5x</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Context Image (for TOEIC Part 1 / IELTS Map) -->
+            <div id="questionContextImageWrapper" style="display: none; margin-bottom: 1.5rem; border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-subtle);">
+              <img id="questionContextImage" src="" alt="Question Context" style="width: 100%; height: auto; display: block;">
+            </div>
+
+            <!-- Toolbar & Highlighter Tools -->
+            <div class="passage-toolbar" id="passageToolbar">
+              <span style="font-size: 0.88rem; font-weight: 700; color: var(--accent-blue);" id="passageTypeLabel">
+                📄 ĐOẠN VĂN / BÀI ĐỌC HIỂU
+              </span>
+              <div class="highlighter-tools">
+                <span style="font-size: 0.82rem; color: var(--text-muted); margin-right: 0.25rem;">Bút dạ quang:</span>
+                <button class="hl-btn yellow" id="hlYellowBtn" title="Bôi màu vàng"></button>
+                <button class="hl-btn green" id="hlGreenBtn" title="Bôi màu xanh lá"></button>
+                <button class="hl-btn cyan" id="hlCyanBtn" title="Bôi màu xanh biển"></button>
+                <button class="hl-btn clear" id="hlClearBtn" title="Xóa bôi màu">Xóa</button>
+              </div>
+            </div>
+
+            <!-- Passage Text Content -->
+            <div class="passage-text" id="passageTextContent">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+
+          <!-- Right Column: Question & Option Choices -->
+          <div class="question-panel">
+            <div class="question-card glass-panel">
+              <div class="question-card-top">
+                <span class="question-number-badge" id="currentQuestionNum">Câu hỏi 1</span>
+                <button class="flag-btn" id="flagQuestionBtn" title="Đánh dấu câu hỏi để xem lại">
+                  <span>🚩</span> Đặt cờ
+                </button>
+              </div>
+
+              <div class="question-prompt" id="questionPromptText">
+                Đang tải câu hỏi...
+              </div>
+
+              <!-- Options A, B, C, D -->
+              <div class="options-list" id="optionsListContainer">
+                <!-- Rendered dynamically -->
+              </div>
+
+              <!-- Practice Mode Explanation -->
+              <div class="practice-explanation-card" id="practiceExplanationBox" style="display: none;">
+                <div class="explanation-title">
+                  <span>💡</span> GIẢI THÍCH CHI TIẾT
+                </div>
+                <div id="practiceExplanationText" style="font-size: 0.95rem; color: #1e293b; line-height: 1.65;">
+                  <!-- Explanation -->
+                </div>
+              </div>
+
+              <!-- Question Navigation Buttons -->
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem;">
+                <button class="btn btn-secondary" id="prevQuestionBtn">
+                  <span>⬅️</span> Câu trước
+                </button>
+                <button class="btn btn-primary" id="nextQuestionBtn">
+                  Câu tiếp theo <span>➡️</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Question Palette (Grid of 1..N) -->
+            <div class="palette-card glass-panel">
+              <div class="palette-header">
+                <span>Danh sách câu hỏi</span>
+                <span style="font-size: 0.8rem; color: var(--text-muted);">
+                  <span style="color: var(--accent-blue);">● Đã làm</span> | <span style="color: var(--accent-amber);">● Cờ</span>
+                </span>
+              </div>
+              <div class="question-grid-palette" id="questionGridPalette">
+                <!-- Buttons 1..N rendered via JS -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. SPEAKING TEST WORKSPACE -->
+        <div class="glass-panel speaking-workspace-card" id="speakingExamLayout" style="display: none;">
+          <div class="speaking-examiner-row">
+            <div class="examiner-avatar">
+              <img src="assets/images/ai_examiner.jpg" alt="Examiner Avatar">
+            </div>
+            <div>
+              <span class="skill-pill speaking" style="margin-bottom: 0.5rem; display: inline-block;">Giám Khảo Ảo AI (IELTS Examiner)</span>
+              <h4 style="font-size: 1.4rem; font-weight: 700;" id="speakingPromptTitle">Part 1: Everyday Questions</h4>
+              <p style="color: var(--text-secondary); margin-top: 0.25rem;" id="speakingPromptSubtitle">
+                Lắng nghe câu hỏi và trả lời qua micro máy tính của bạn
+              </p>
+            </div>
+          </div>
+
+          <div style="padding: 1.5rem; background: var(--bg-tertiary); border-radius: var(--radius-md); border: 1px solid var(--border-subtle);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+              <span style="font-weight: 700; color: var(--accent-purple);">Câu hỏi phỏng vấn:</span>
+              <button class="btn btn-secondary" id="playSpeakingPromptAudioBtn" style="padding: 0.35rem 0.85rem; font-size: 0.82rem;">
+                <span>🔊</span> Giám khảo đọc câu hỏi
+              </button>
+            </div>
+            <div style="font-size: 1.2rem; font-weight: 700; color: var(--text-primary);" id="speakingPromptQuestion">
+              Where is your hometown located, and what do you like most about living there?
+            </div>
+          </div>
+
+          <!-- Canvas Waveform for Voice Recording -->
+          <div class="waveform-container">
+            <canvas id="speakingWaveformCanvas" width="800" height="110"></canvas>
+            <div id="waveformIdleText" style="position: absolute; font-size: 0.95rem; font-weight: 600; color: var(--text-muted); pointer-events: none;">
+              🎙️ Nhấn "Bắt đầu ghi âm" để nói
+            </div>
+          </div>
+
+          <!-- Record Controls -->
+          <div class="speaking-actions">
+            <button class="record-btn idle" id="speakingRecordBtn">
+              <span id="recordBtnIcon">🎙️</span> <span id="recordBtnText">Bắt đầu ghi âm</span>
+            </button>
+            <audio id="speakingPlaybackAudio" controls style="display: none;"></audio>
+          </div>
+
+          <!-- Speech-to-text Transcription -->
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+              <span style="font-size: 0.92rem; font-weight: 700; color: var(--text-secondary);">Nhận diện giọng nói của bạn (Speech-to-Text):</span>
+              <span style="font-size: 0.8rem; color: var(--accent-blue); font-weight: 600;">Tự động phiên âm tiếng Anh thời gian thực</span>
+            </div>
+            <div class="transcription-box" id="speakingTranscriptBox">
+              (Nội dung bài nói của bạn sẽ hiển thị tại đây khi bạn bắt đầu phát âm...)
+            </div>
+          </div>
+
+          <!-- Model Response & Tips -->
+          <div style="border-top: 1px solid var(--border-subtle); padding-top: 1.5rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+              <span style="font-weight: 700; color: var(--accent-blue);">💡 Câu trả lời mẫu Band 8.5+ & Từ vựng gợi ý:</span>
+              <button class="btn btn-secondary" id="toggleSpeakingSampleBtn" style="padding: 0.35rem 0.85rem; font-size: 0.82rem;">
+                Hiện / Ẩn bài mẫu
+              </button>
+            </div>
+            <div id="speakingSampleContainer" style="display: none; padding: 1.35rem; background: #ffffff; border: 1px solid #cbd5e1; border-radius: var(--radius-md); font-size: 1rem; line-height: 1.75;">
+              <div id="speakingSampleText"></div>
+            </div>
+          </div>
+
+          <!-- Speaking Question Navigation -->
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem;">
+            <button class="btn btn-secondary" id="prevSpeakingQuestionBtn">⬅️ Câu trước</button>
+            <button class="btn btn-primary" id="nextSpeakingQuestionBtn">Câu tiếp theo ➡️</button>
+          </div>
+        </div>
+
+        <!-- 3. WRITING TEST WORKSPACE -->
+        <div class="writing-layout" id="writingExamLayout" style="display: none;">
+          <!-- Left: Prompt & Topic -->
+          <div class="glass-panel" style="padding: 2.25rem; max-height: 75vh; overflow-y: auto;">
+            <span class="skill-pill writing" style="margin-bottom: 1rem; display: inline-block;">IELTS Academic Writing</span>
+            <h4 style="font-size: 1.35rem; font-weight: 700; margin-bottom: 1rem;" id="writingPromptTitle">Task 2: Discursive Essay</h4>
+            
+            <div style="padding: 1.35rem; background: #f8fafc; border-radius: var(--radius-md); border: 1px solid #e2e8f0; margin-bottom: 1.5rem;">
+              <p style="font-size: 1.08rem; line-height: 1.75; color: var(--text-primary); white-space: pre-wrap;" id="writingPromptDescription"></p>
+            </div>
+
+            <!-- Rubric Checklist -->
+            <div style="margin-bottom: 1.5rem;">
+              <h5 style="color: var(--accent-amber); margin-bottom: 0.75rem;">📋 Tiêu chí chấm điểm (IELTS Assessment Criteria):</h5>
+              <ul id="writingRubricList" style="padding-left: 1.25rem; color: var(--text-secondary); font-size: 0.92rem; line-height: 1.65;"></ul>
+            </div>
+
+            <!-- Model Essay Toggle -->
+            <div>
+              <button class="btn btn-secondary" id="toggleWritingSampleBtn" style="width: 100%;">
+                <span>📖</span> Xem bài viết mẫu Band 8.5+
+              </button>
+              <div id="writingSampleEssayBox" style="display: none; margin-top: 1rem; padding: 1.35rem; background: #ffffff; border: 1px solid #cbd5e1; border-radius: var(--radius-md); font-size: 1rem; line-height: 1.75;"></div>
+            </div>
+          </div>
+
+          <!-- Right: Textarea Editor & Word Counter -->
+          <div class="glass-panel writing-editor-card">
+            <div class="writing-toolbar">
+              <span style="font-weight: 700; font-size: 1rem;">Khung soạn thảo bài làm</span>
+              <div class="word-count-badge" id="writingWordCountBadge">
+                Số từ: <span id="writingWordCount">0</span> từ (Yêu cầu: <span id="writingMinWords">250</span>+)
+              </div>
+            </div>
+
+            <textarea class="writing-textarea" id="writingTextarea" placeholder="Nhập bài luận tiếng Anh của bạn tại đây..."></textarea>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem;">
+              <button class="btn btn-secondary" id="prevWritingQuestionBtn">⬅️ Task trước</button>
+              <button class="btn btn-primary" id="nextWritingQuestionBtn">Task tiếp theo ➡️</button>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+    </main>
+
+    <!-- ==========================================
+         SCORE REPORT MODAL
+         ========================================== -->
+    <div class="modal-overlay" id="scoreReportModal">
+      <div class="score-modal-content">
+        <div style="text-align: center; margin-bottom: 1.5rem;">
+          <span style="font-size: 2.5rem;">🎉</span>
+          <h3 style="font-size: 1.85rem; font-weight: 800; margin-top: 0.5rem;" id="modalExamTitle">Kết Quả Bài Thi</h3>
+          <p style="color: var(--text-secondary);" id="modalSubmittedTime"></p>
+        </div>
+
+        <!-- Score Badge Circle -->
+        <div class="score-badge-circle">
+          <div class="score-number" id="modalScoreValue">860</div>
+          <div class="score-scale" id="modalScoreScale">TOEIC / 990</div>
+        </div>
+
+        <div style="text-align: center; margin-bottom: 2rem;">
+          <span class="skill-pill" id="modalBandLevelPill" style="background: #ecfdf5; color: var(--accent-emerald); font-size: 0.92rem; padding: 0.45rem 1.35rem;">
+            CEFR C1 Advanced
+          </span>
+        </div>
+
+        <!-- Stats Breakdown -->
+        <div class="stats-grid" style="grid-template-columns: repeat(3, 1fr); margin-bottom: 2rem;">
+          <div class="glass-panel" style="padding: 1.15rem; text-align: center;">
+            <div style="font-size: 1.6rem; font-weight: 800; color: var(--accent-emerald);" id="modalCorrectCount">18</div>
+            <div style="font-size: 0.85rem; color: var(--text-muted);">Số câu đúng</div>
+          </div>
+          <div class="glass-panel" style="padding: 1.15rem; text-align: center;">
+            <div style="font-size: 1.6rem; font-weight: 800; color: var(--accent-rose);" id="modalIncorrectCount">2</div>
+            <div style="font-size: 0.85rem; color: var(--text-muted);">Số câu sai / Bỏ trống</div>
+          </div>
+          <div class="glass-panel" style="padding: 1.15rem; text-align: center;">
+            <div style="font-size: 1.6rem; font-weight: 800; color: var(--accent-blue);" id="modalElapsedTime">32:15</div>
+            <div style="font-size: 0.85rem; color: var(--text-muted);">Thời gian hoàn thành</div>
+          </div>
+        </div>
+
+        <!-- Detailed Review Section -->
+        <div style="margin-bottom: 2rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <h4 style="font-size: 1.2rem; font-weight: 700;">Xem lại chi tiết từng câu:</h4>
+            <div style="display: flex; gap: 0.5rem;" id="reviewFilterBtns">
+              <button class="btn btn-secondary active-filter" data-filter="all" style="padding: 0.25rem 0.75rem; font-size: 0.8rem;">Tất cả</button>
+              <button class="btn btn-secondary" data-filter="wrong" style="padding: 0.25rem 0.75rem; font-size: 0.8rem;">Câu sai</button>
+              <button class="btn btn-secondary" data-filter="correct" style="padding: 0.25rem 0.75rem; font-size: 0.8rem;">Câu đúng</button>
+            </div>
+          </div>
+
+          <div id="modalReviewList" style="display: flex; flex-direction: column; gap: 1rem; max-height: 280px; overflow-y: auto;">
+            <!-- Review items injected via JS -->
+          </div>
+        </div>
+
+        <!-- Actions -->
+        <div style="display: flex; justify-content: flex-end; gap: 1rem;">
+          <button class="btn btn-secondary" id="modalCloseBtn">Đóng</button>
+          <button class="btn btn-primary" id="modalRetakeBtn">Làm lại đề này</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==========================================
+         TOAST NOTIFICATION CONTAINER
+         ========================================== -->
+    <div class="toast-container" id="toastContainer"></div>
+
+  </div>
+
+  <!-- Main JavaScript Application Entry -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
